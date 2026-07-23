@@ -1,0 +1,23 @@
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Never commit these — credentials, keys, certificates, raw captures
+*.pem
+*.key
+*.crt
+*.p12
+*.pcap
+*.pcapng
+internal_users.yml
+docker-compose.yml
+.env
+*secret*
+*password*

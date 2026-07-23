@@ -1,0 +1,8 @@
+{
+  "_comment": "/etc/docker/daemon.json — see docs/issues-log.md I14.",
+  "_why_ipv6_false": "Docker preferring IPv6 over an unstable wireless bridge caused image pulls to stall and reset. Forcing IPv4 resolved it.",
+  "_why_single_download": "Parallel layer downloads competed on the same unreliable path; serializing them made pulls complete reliably, if slowly.",
+
+  "ipv6": false,
+  "max-concurrent-downloads": 1
+}

@@ -1,0 +1,24 @@
+<!--
+  Additional <remote> block for the Wazuh manager: a syslog listener for the legacy
+  host that cannot run a modern agent. Added ALONGSIDE the existing agent listener,
+  not in place of it.
+
+  Port 514/udp must also be published on the manager container.
+
+  IMPORTANT (docs/issues-log.md I23): the manager's live ossec.conf lives in a
+  persistent volume seeded only at first container creation. Editing the host-side
+  template and cycling the stack does NOT necessarily apply the change. Always
+  verify inside the running container and confirm the listener appears in the
+  manager log before trusting it.
+
+  Security note: this path is cleartext and unauthenticated. <allowed-ips> is a
+  source restriction, not authentication — it is trusted here only because the lab
+  segment is isolated.
+-->
+
+<remote>
+  <connection>syslog</connection>
+  <port>514</port>
+  <protocol>udp</protocol>
+  <allowed-ips>192.168.1.0/24</allowed-ips>
+</remote>
